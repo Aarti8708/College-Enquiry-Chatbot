@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SVSU AI | Student Enquiry Portal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f4f5fb;
+    color: #25243a;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 245px;
+    flex-shrink: 0;
+    background: #17162e;
+    color: white;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 42px;
+}
+
+.brand span {
+    color: #a99bff;
+}
+
+.menu-title {
+    color: #9996b5;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.menu-item {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    padding: 13px 14px;
+    border-radius: 10px;
+    margin-bottom: 9px;
+    color: #d8d6e9;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background: #292747;
+}
+
+.menu-item.active {
+    background: #5142a8;
+    color: white;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    background: #252442;
+    padding: 16px;
+    border-radius: 13px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #d4d1e8;
+}
+
+.main {
+    flex: 1;
+    padding: 28px 35px;
+    min-width: 0;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.topbar h3 {
+    font-size: 19px;
+}
+
+.status {
+    background: #e5f8ed;
+    color: #16834a;
+    padding: 9px 14px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.hero {
+    background: linear-gradient(120deg, #5142a8, #8b64d9);
+    color: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: 27px;
+    margin: 13px 0;
+}
+
+.hero p {
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid transparent;
+    text-align: left;
+    cursor: pointer;
+}
+
+.card:hover {
+    border-color: #8170d2;
+}
+
+.card .emoji {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.card h4 {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.card p {
+    color: #77758c;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.chat-section,
+.portal-section {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 18px rgba(30,25,70,.05);
+}
+
+.chat-header {
+    padding: 19px 22px;
+    border-bottom: 1px solid #eeeef4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bot-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bot-icon {
+    width: 43px;
+    height: 43px;
+    background: #eeeaff;
+    border-radius: 13px;
+    display: grid;
+    place-items: center;
+    font-size: 23px;
+}
+
+.bot-info h4 {
+    font-size: 14px;
+}
+
+.bot-info p {
+    color: #77758c;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.clear-btn,
+.back-btn {
+    border: 1px solid #e4e2ed;
+    background: white;
+    padding: 9px 13px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.chat-body {
+    height: 350px;
+    overflow-y: auto;
+    padding: 22px;
+    background: #fcfcff;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 17px;
+}
+
+.message.user {
+    justify-content: flex-end;
+}
+
+.bubble {
+    max-width: 78%;
+    padding: 13px 16px;
+    border-radius: 13px;
+    font-size: 13px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.bot .bubble {
+    background: #eeeaff;
+    color: #302b55;
+}
+
+.user .bubble {
+    background: #5142a8;
+    color: white;
+}
+
+.quick-area {
+    padding: 15px 22px;
+    border-top: 1px solid #eeeef4;
+}
+
+.quick-area p {
+    color: #77758c;
+    font-size: 11px;
+    margin-bottom: 11px;
+}
+
+.quick-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.quick-buttons button {
+    border: 1px solid #ded9f5;
+    background: #f8f6ff;
+    color: #5142a8;
+    padding: 9px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    padding: 17px 22px;
+    border-top: 1px solid #eeeef4;
+}
+
+.input-area input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid #e4e2ed;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+.send-btn {
+    background: #5142a8;
+    color: white;
+    border: none;
+    padding: 0 22px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.feedback {
+    text-align: center;
+    padding: 19px;
+    background: #faf9ff;
+    border-top: 1px solid #eeeef4;
+}
+
+.feedback p {
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.feedback button {
+    padding: 9px 18px;
+    border: 1px solid #dcd6f3;
+    background: white;
+    border-radius: 8px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+#feedbackMessage {
+    color: #16834a;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.portal-content {
+    padding: 26px;
+}
+
+.portal-content h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: #302b55;
+}
+
+.intro {
+    color: #6f6c82;
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.info-group,
+.contact-card {
+    margin: 15px 0;
+    padding: 18px;
+    background: #faf9ff;
+    border: 1px solid #eeeafc;
+    border-radius: 12px;
+}
+
+.info-group h3,
+.contact-card h3 {
+    font-size: 15px;
+    color: #5142a8;
+    margin-bottom: 12px;
+}
+
+.info-group li {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-left: 20px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 13px;
+}
+
+.contact-card p {
+    font-size: 13px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.note {
+    margin-top: 18px;
+    padding: 14px;
+    background: #f7f4ff;
+    border-left: 4px solid #8b64d9;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.link-list a {
+    background: #5142a8;
+    color: white;
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.footer {
+    text-align: center;
+    color: #88869b;
+    font-size: 11px;
+    padding: 25px 10px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+@media(max-width:850px) {
+    .layout {
+        display: block;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .menu-item {
+        display: inline-block;
+        width: auto;
+    }
+
+    .main {
+        padding: 18px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:520px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">🎓 SVSU <span>AI</span></div>
+
+        <div class="menu-title">MAIN MENU</div>
+
+        <button class="menu-item active" data-section="chat">
+            💬 Student Enquiry
+        </button>
+
+        <button class="menu-item" data-section="courses">
+            📚 Course Information
+        </button>
+
+        <button class="menu-item" data-section="admission">
+            📝 Admission Help
+        </button>
+
+        <button class="menu-item" data-section="contact">
+            📞 Contact Support
+        </button>
+
+        <div class="sidebar-bottom">
+            <strong>SVSU Student Assistant</strong>
+            <p>Your digital college enquiry companion.</p>
+            <p>Available to help with common questions.</p>
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div class="topbar">
+            <h3 id="pageTitle">Student Enquiry Portal</h3>
+            <div class="status">● Assistant Online</div>
+        </div>
+
+
+        <!-- HOME SECTION -->
+        <section class="hero" id="heroSection">
+
+            <small>WELCOME TO SVSU</small>
+
+            <h1>
+                Welcome to Shri Vishwakarma Skill University! 👋
+            </h1>
+
+            <p>
+                Have questions about courses, admissions or college
+                information? Ask our Student Enquiry Assistant.
+            </p>
+
+        </section>
+
+
+        <section class="cards" id="homeCards">
+
+            <button class="card" data-open="courses">
+                <div class="emoji">📚</div>
+                <h4>Course Information</h4>
+                <p>Explore available programmes.</p>
+            </button>
+
+            <button class="card" data-open="admission">
+                <div class="emoji">📝</div>
+                <h4>Admission Enquiry</h4>
+                <p>Get admission guidance.</p>
+            </button>
+
+            <button class="card" data-open="contact">
+                <div class="emoji">🤝</div>
+                <h4>Student Support</h4>
+                <p>Contact university support.</p>
+            </button>
+
+        </section>
+
+
+        <!-- CHATBOT SECTION -->
+        <section class="chat-section" id="chatSection">
+
+            <div class="chat-header">
+
+                <div class="bot-info">
+                    <div class="bot-icon">🤖</div>
+
+                    <div>
+                        <h4>SVSU Student Assistant</h4>
+                        <p>Online · Ready to help</p>
+                    </div>
+                </div>
+
+                <button class="clear-btn" onclick="clearChat()">
+                    Clear Chat
+                </button>
+
+            </div>
+
+
+            <div class="chat-body" id="chatBody">
+
+                <div class="message bot">
+                    <div class="bubble">
+                        Hello! 👋 Welcome to Shri Vishwakarma Skill University.
+
+                        I am your Student Enquiry Assistant.
+
+                        How can I help you today?
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="quick-area">
+
+                <p>QUICK QUESTIONS</p>
+
+                <div class="quick-buttons">
+
+                    <button onclick="quickQuestion('What courses are available?')">
+                        📚 Courses
+                    </button>
+
+                    <button onclick="quickQuestion('Tell me about admission')">
+                        📝 Admission
+                    </button>
+
+                    <button onclick="quickQuestion('What is the fee structure?')">
+                        💰 Fees
+                    </button>
+
+                    <button onclick="quickQuestion('What is the eligibility?')">
+                        🎓 Eligibility
+                    </button>
+
+                    <button onclick="quickQuestion('Contact details')">
+                        📞 Contact
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <input
+                    type="text"
+                    id="userInput"
+                    placeholder="Type your question here..."
+                >
+
+                <button class="send-btn" onclick="sendMessage()">
+                    Send ➤
+                </button>
+
+            </div>
+
+
+            <div class="feedback">
+
+                <p>Was this answer helpful?</p>
+
+                <button onclick="sendFeedback('Yes')">
+                    👍 Yes
+                </button>
+
+                <button onclick="sendFeedback('No')">
+                    👎 No
+                </button>
+
+                <div id="feedbackMessage"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- OTHER MENU PAGES -->
+        <section class="portal-section" id="portalSection" hidden>
+
+            <div class="chat-header">
+
+                <div class="bot-info">
+                    <div class="bot-icon" id="sectionIcon">📘</div>
+
+                    <div>
+                        <h4 id="sectionHeader">Information</h4>
+                        <p>SVSU Student Enquiry Portal</p>
+                    </div>
+                </div>
+
+                <button class="back-btn" onclick="showSection('chat')">
+                    ← Back to Enquiry
+                </button>
+
+            </div>
+
+            <div class="portal-content" id="portalContent">
+                Loading information...
+            </div>
+
+        </section>
+
+
+        <div class="footer">
+            Shri Vishwakarma Skill University |
+            Student Enquiry Chatbot |
+            MCA Academic Project
+        </div>
+
+    </main>
+
+</div>
+
+
+<script>
+
+const chatBody = document.getElementById("chatBody");
+const userInput = document.getElementById("userInput");
+
+
+// ADD CHAT MESSAGE
+function addMessage(message, sender) {
+
+    const messageDiv = document.createElement("div");
+
+    messageDiv.className = "message " + sender;
+
+    const bubble = document.createElement("div");
+
+    bubble.className = "bubble";
+
+    bubble.textContent = message;
+
+    messageDiv.appendChild(bubble);
+
+    chatBody.appendChild(messageDiv);
+
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+
+// SEND CHAT MESSAGE
+async function sendMessage() {
+
+    const message = userInput.value.trim();
+
+    if (!message) return;
+
+    addMessage(message, "user");
+
+    userInput.value = "";
+
+    try {
+
+        const response = await fetch("/chat", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: message
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.response || "Server error");
+        }
+
+        addMessage(data.response, "bot");
+
+    } catch (error) {
+
+        addMessage(
+            "Unable to connect to the server. Please try again.",
+            "bot"
+        );
+
+    }
+
+}
+
+
+// QUICK QUESTIONS
+function quickQuestion(question) {
+
+    userInput.value = question;
+
+    sendMessage();
+
+}
+
+
+// CLEAR CHAT
+function clearChat() {
+
+    chatBody.innerHTML = "";
+
+    addMessage(
+        "Hello! Welcome to SVSU Student Enquiry Assistant. How can I help you?",
+        "bot"
+    );
+
+    document.getElementById("feedbackMessage").textContent = "";
+
+}
+
+
+// FEEDBACK
+async function sendFeedback(value) {
+
+    const feedbackMessage =
+        document.getElementById("feedbackMessage");
+
+    try {
+
+        const response = await fetch("/feedback", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                feedback: value
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            throw new Error("Feedback could not be saved");
+        }
+
+        feedbackMessage.textContent =
+            "Thank you! Your feedback has been recorded. 💜";
+
+    } catch (error) {
+
+        feedbackMessage.textContent =
+            "Feedback could not be saved. Please try again.";
+
+    }
+
+}
+
+
+// SAFE HTML DISPLAY
+function escapeHtml(value) {
+
+    return String(value).replace(/[&<>"']/g, char => ({
+
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+
+    })[char]);
+
+}
+
+
+// DISPLAY OFFICIAL LINKS
+function renderLinks(links) {
+
+    if (!links) return "";
+
+    return `
+        <div class="link-list">
+
+            ${links.map(link => `
+
+                <a href="${escapeHtml(link.url)}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+
+                   ${escapeHtml(link.label)} ↗
+
+                </a>
+
+            `).join("")}
+
+        </div>
+    `;
+
+}
+
+
+// DISPLAY SECTION INFORMATION
+function renderSection(section, data) {
+
+    let html = `
+        <h2>${escapeHtml(data.title)}</h2>
+
+        <p class="intro">
+            ${escapeHtml(data.intro || "")}
+        </p>
+    `;
+
+
+    // COURSES PAGE
+    if (section === "courses") {
+
+        data.groups.forEach(group => {
+
+            html += `
+                <div class="info-group">
+
+                    <h3>${escapeHtml(group.name)}</h3>
+
+                    <ul>
+
+                        ${group.items.map(item => `
+                            <li>${escapeHtml(item)}</li>
+                        `).join("")}
+
+                    </ul>
+
+                </div>
+            `;
+
+        });
+
+    }
+
+
+    // ADMISSION PAGE
+    else if (section === "admission") {
+
+        html += `
+            <div class="info-group">
+
+                <h3>Admission Process</h3>
+
+                <ol>
+
+                    ${data.steps.map(step => `
+                        <li>${escapeHtml(step)}</li>
+                    `).join("")}
+
+                </ol>
+
+            </div>
+
+            <div class="info-group">
+
+                <h3>Admission Help Desk</h3>
+
+                <p>
+                    Email:
+                    <a href="mailto:${escapeHtml(data.email)}">
+                        ${escapeHtml(data.email)}
+                    </a>
+                </p>
+
+                <p>
+                    Phone:
+                    <a href="tel:${escapeHtml(data.phone)}">
+                        ${escapeHtml(data.phone)}
+                    </a>
+                </p>
+
+            </div>
+        `;
+
+    }
+
+
+    // CONTACT PAGE
+    else if (section === "contact") {
+
+        html += `
+
+            <div class="contact-grid">
+
+                <div class="contact-card">
+                    <h3>☎ Main Helpline</h3>
+                    <p>
+                        <a href="tel:${escapeHtml(data.phone)}">
+                            ${escapeHtml(data.phone_display)}
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>✉ General Email</h3>
+                    <p>
+                        <a href="mailto:${escapeHtml(data.email)}">
+                            ${escapeHtml(data.email)}
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📝 Admission Email</h3>
+                    <p>
+                        <a href="mailto:${escapeHtml(data.admission_email)}">
+                            ${escapeHtml(data.admission_email)}
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📞 Other Numbers</h3>
+                    <p>
+                        ${data.other_phones.map(escapeHtml).join("<br>")}
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📍 Main Campus</h3>
+                    <p>${escapeHtml(data.address)}</p>
+                </div>
+
+                <div class="contact-card">
+                    <h3>📍 Transit Office</h3>
+                    <p>${escapeHtml(data.transit_address)}</p>
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    if (data.note) {
+
+        html += `
+            <div class="note">
+                ${escapeHtml(data.note)}
+            </div>
+        `;
+
+    }
+
+    html += renderLinks(data.links);
+
+    document.getElementById("portalContent").innerHTML = html;
+
+}
+
+
+// SIDEBAR NAVIGATION
+async function showSection(section) {
+
+    document.querySelectorAll(".menu-item").forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.dataset.section === section
+        );
+
+    });
+
+
+    const isChat = section === "chat";
+
+    document.getElementById("chatSection").hidden = !isChat;
+
+    document.getElementById("portalSection").hidden = isChat;
+
+    document.getElementById("heroSection").hidden = !isChat;
+
+    document.getElementById("homeCards").hidden = !isChat;
+
+
+    const titles = {
+
+        chat: "Student Enquiry Portal",
+        courses: "Course Information",
+        admission: "Admission Help",
+        contact: "Contact Support"
+
+    };
+
+    document.getElementById("pageTitle").textContent =
+        titles[section] || "Student Enquiry Portal";
+
+
+    if (isChat) return;
+
+
+    const icons = {
+
+        courses: "📚",
+        admission: "📝",
+        contact: "📞"
+
+    };
+
+    document.getElementById("sectionIcon").textContent =
+        icons[section];
+
+    document.getElementById("sectionHeader").textContent =
+        titles[section];
+
+    const portalContent =
+        document.getElementById("portalContent");
+
+    portalContent.textContent = "Loading information...";
+
+
+    try {
+
+        const response = await fetch(
+            `/api/portal/${encodeURIComponent(section)}`
+        );
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error("Unable to load information");
+        }
+
+        renderSection(section, result.data);
+
+    } catch (error) {
+
+        portalContent.textContent =
+            "Unable to load information. Please check the Flask server and try again.";
+
+    }
+
+}
+
+
+// SIDEBAR BUTTON EVENTS
+document.querySelectorAll(".menu-item").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        showSection(button.dataset.section);
+
+    });
+
+});
+
+
+// INFORMATION CARD EVENTS
+document.querySelectorAll("[data-open]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        showSection(button.dataset.open);
+
+    });
+
+});
+
+
+// ENTER KEY SUPPORT
+userInput.addEventListener("keydown", event => {
+
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+
+});
+
+</script>
+
+</body>
+</html>

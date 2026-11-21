@@ -1,0 +1,107 @@
+
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hello",
+        "Hi",
+        "Good morning",
+        "Hey",
+        "How are you"
+      ],
+      "responses": [
+        "Hello! Welcome to Shri Vishwakarma Skill University. How can I help you?"
+      ]
+    },
+    {
+      "tag": "courses",
+      "patterns": [
+        "What courses are available",
+        "Tell me about courses",
+        "Which courses do you offer",
+        "List of courses",
+        "Available programmes"
+      ],
+      "responses": [
+        "Please visit the official SVSU website for the latest list of available courses and programmes."
+      ]
+    },
+    {
+      "tag": "admission",
+      "patterns": [
+        "How can I apply",
+        "Admission process",
+        "I want admission",
+        "How to get admission",
+        "Admission details"
+      ],
+      "responses": [
+        "For admission information, eligibility and application dates, please check the official SVSU admission portal."
+      ]
+    },
+    {
+      "tag": "fees",
+      "patterns": [
+        "What is the fee",
+        "Course fees",
+        "Tell me fee structure",
+        "How much are the fees",
+        "MCA fees"
+      ],
+      "responses": [
+        "Fee structure may vary by programme. Please check the latest official SVSU fee details."
+      ]
+    },
+    {
+      "tag": "eligibility",
+      "patterns": [
+        "What is the eligibility",
+        "Admission qualification",
+        "Who can apply",
+        "Eligibility criteria",
+        "Required qualification"
+      ],
+      "responses": [
+        "Eligibility requirements depend on the selected programme. Please check the official SVSU admission guidelines."
+      ]
+    },
+    {
+      "tag": "contact",
+      "patterns": [
+        "Contact details",
+        "College phone number",
+        "How can I contact college",
+        "University address",
+        "Contact information"
+      ],
+      "responses": [
+        "Please visit the official Shri Vishwakarma Skill University website for verified contact details."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thank you",
+        "Thanks",
+        "Thank you so much",
+        "That was helpful"
+      ],
+      "responses": [
+        "You're welcome! Happy to help you."
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you",
+        "Talk to you later"
+      ],
+      "responses": [
+        "Goodbye! Have a great day."
+      ]
+    }
+  ]
+}
